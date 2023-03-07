@@ -42,11 +42,13 @@ class UserContainer extends StatelessWidget {
                   radius: 50,
                   backgroundImage: NetworkImage(image),
                 ),
-                Text(
-                  name,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
+                Flexible(
+                  child: Text(
+                    name,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                 ),
                 Text(

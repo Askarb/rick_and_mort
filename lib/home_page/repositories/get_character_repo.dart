@@ -9,4 +9,9 @@ class GetCharacterRepo {
     final response = await dio.get('character/?name=$name');
     return CharacterModel.fromJson(response.data);
   }
+
+  Future<CharacterModel> nextPage({required String path}) async {
+    final response = await dio.get(path);
+    return CharacterModel.fromJson(response.data);
+  }
 }
