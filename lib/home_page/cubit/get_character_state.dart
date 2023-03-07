@@ -9,6 +9,8 @@ class GetCharacterError extends GetCharacterState {
   GetCharacterError({required this.errorText1});
 }
 
+class LoadingState extends GetCharacterState {}
+
 class GetCharacterSuccess extends GetCharacterState {
   final CharacterModel model;
   GetCharacterSuccess({required this.model});

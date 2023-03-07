@@ -97,6 +97,12 @@ class _HomePageScreenState extends State<HomePageScreen> {
                       ),
                     );
                   }
+
+                  if (state is LoadingState) {
+                    return const Center(
+                      child: CircularProgressIndicator.adaptive(),
+                    );
+                  }
                   if (state is GetCharacterError) {
                     return Center(
                       child: Text(state.errorText1),

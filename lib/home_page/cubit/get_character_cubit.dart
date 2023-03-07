@@ -12,6 +12,8 @@ class GetCharacterCubit extends Cubit<GetCharacterState> {
   final GetCharacterRepo repo;
 
   Future getCharecter(String? name) async {
+    await Future.delayed(const Duration(seconds: 1));
+
     try {
       final model = await repo.getCharacterData(name: name ?? '');
       emit(GetCharacterSuccess(model: model));
@@ -21,6 +23,8 @@ class GetCharacterCubit extends Cubit<GetCharacterState> {
   }
 
   Future nextPage(String path) async {
+    emit(LoadingState());
+    await Future.delayed(const Duration(seconds: 1));
     try {
       final model = await repo.nextPage(path: path);
       emit(GetCharacterSuccess(model: model));
