@@ -10,13 +10,17 @@ class GetCharacterCubit extends Cubit<GetCharacterState> {
   GetCharacterCubit({required this.repo}) : super(GetCharacterInitial());
 
   final GetCharacterRepo repo;
+  List<Results> objects = [];
 
   Future getCharecter(String? name) async {
     await Future.delayed(const Duration(seconds: 1));
 
     try {
       final model = await repo.getCharacterData(name: name ?? '');
-      emit(GetCharacterSuccess(model: model));
+      if (model.results != null) {
+        objects.addAll(model.results!);
+      }
+      emit(GetCharacterSuccess(model: model, objects: objects));
     } catch (e) {
       emit(GetCharacterError(errorText1: e.toString()));
     }
@@ -27,7 +31,10 @@ class GetCharacterCubit extends Cubit<GetCharacterState> {
     await Future.delayed(const Duration(seconds: 1));
     try {
       final model = await repo.nextPage(path: path);
-      emit(GetCharacterSuccess(model: model));
+      if (model.results != null) {
+        objects.addAll(model.results!);
+      }
+      emit(GetCharacterSuccess(model: model, objects: objects));
     } catch (e) {
       if (e is DioError) {
         emit(GetCharacterError(errorText1: e.toString()));

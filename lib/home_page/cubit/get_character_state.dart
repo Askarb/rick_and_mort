@@ -13,5 +13,7 @@ class LoadingState extends GetCharacterState {}
 
 class GetCharacterSuccess extends GetCharacterState {
   final CharacterModel model;
-  GetCharacterSuccess({required this.model});
+
+  List<Results> objects = [];
+  GetCharacterSuccess({required this.model, required this.objects});
 }
